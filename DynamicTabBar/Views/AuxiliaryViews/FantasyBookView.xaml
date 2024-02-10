@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DynamicTabBar.Views.AuxiliaryViews.FantasyBookView"
+    xmlns:c="clr-namespace:DynamicTabBar.Helpers.Converters"
+    xmlns:tv="clr-namespace:DynamicTabBar.Views.DynamicTabBarViews"
+    xmlns:vm="clr-namespace:DynamicTabBar.ViewModels"
+    x:DataType="vm:DynamicTabViewModel"
+    RowDefinitions="45,*,*"
+    ColumnDefinitions="*">
+
+    <Grid.Resources>
+        <c:IntToBoolConverter x:Key="IntToBool"/>
+    </Grid.Resources>
+
+    <!--Top Tab Bar-->
+    <tv:TopTabBarView
+        Grid.Row="0"
+        Grid.Column="0"
+        IsVisible="{Binding TopTabList.Count, Converter={StaticResource IntToBool}}"/>
+
+    <!--Tab 0 View-->
+    <Label
+        Grid.Row="1"
+        Grid.Column="0"
+        Text="{Binding TopTabList[0].TabTitle}"
+        FontSize="30"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        IsVisible="{Binding TopTabList[0].TabIsSelected}"/>
+
+    <!--Tab 1 View-->
+    <Label
+        Grid.Row="1"
+        Grid.Column="0"
+        Text="{Binding TopTabList[1].TabTitle}"
+        FontSize="30"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        IsVisible="{Binding TopTabList[1].TabIsSelected}"/>
+
+    <!--Tab 2 View-->
+    <Label
+        Grid.Row="1"
+        Grid.Column="0"
+        Text="{Binding TopTabList[2].TabTitle}"
+        FontSize="30"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        IsVisible="{Binding TopTabList[2].TabIsSelected}"/>
+
+    <!--Tab 3 View-->
+    <Label
+        Grid.Row="1"
+        Grid.Column="0"
+        Text="{Binding TopTabList[3].TabTitle}"
+        FontSize="30"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        IsVisible="{Binding TopTabList[3].TabIsSelected}"/>
+
+    <!--Common Text for all Top Tab views-->
+    <Label
+        Grid.Row="2"
+        Grid.Column="0"
+        Text="{Binding BottomTabList[0].TabTitle, StringFormat='{0} Books'}"
+        FontSize="30"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"/>
+</Grid>

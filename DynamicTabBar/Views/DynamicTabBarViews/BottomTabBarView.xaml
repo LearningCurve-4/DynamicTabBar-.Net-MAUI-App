@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CollectionView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DynamicTabBar.Views.DynamicTabBarViews.BottomTabBarView"
+    xmlns:c="clr-namespace:DynamicTabBar.Helpers.Converters"
+    xmlns:m="clr-namespace:DynamicTabBar.Models"
+    xmlns:vm="clr-namespace:DynamicTabBar.ViewModels"
+    x:DataType="vm:BaseViewModel"
+    HeightRequest="60"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    BackgroundColor="{StaticResource FooterBarFillColor}"
+    VerticalScrollBarVisibility="Never"
+    ItemsSource="{Binding BottomTabList}"
+    x:Name="bottomtabbar">
+
+    <CollectionView.Resources>
+        <c:ToggleConverter x:Key="Toggle"/>
+        <c:ToggleMVConverter x:Key="ToggleMV"/>
+    </CollectionView.Resources>
+
+    <CollectionView.ItemsLayout>
+        <GridItemsLayout 
+            Orientation="Vertical" 
+            Span="{Binding BottomTabList.Count}"/>
+    </CollectionView.ItemsLayout>
+
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="m:DynamicTabModel">
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,3,0,0">
+
+                <Image
+                    HeightRequest="37"
+                    WidthRequest="37">
+                    
+                    <Image.Source>
+                        <MultiBinding Converter="{StaticResource ToggleMV}">
+                            <Binding Path="TabIsSelected"/>
+                            <Binding Path="TabImage"/>
+                            <Binding StringFormat="OO"/>
+                        </MultiBinding>
+                    </Image.Source>
+                </Image>
+
+                <Label 
+                    Text="{Binding TabTitle, Mode=OneTime}"
+                    TextColor="{Binding TabIsSelected, Converter={StaticResource Toggle}, ConverterParameter=TabOnTextColor_TabOffTextColor_RK}"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"/>
+
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        Command="{Binding Path=BindingContext.SwitchTabCommand, Mode=OneTime, Source={x:Reference bottomtabbar}}"
+                        CommandParameter="{Binding TabPos, StringFormat='{0},1'}"/>
+                </VerticalStackLayout.GestureRecognizers>
+            </VerticalStackLayout>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>

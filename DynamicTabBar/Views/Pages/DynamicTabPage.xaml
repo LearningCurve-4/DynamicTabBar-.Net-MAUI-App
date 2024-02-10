@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DynamicTabBar.Views.Pages.DynamicTabPage"
+    xmlns:c="clr-namespace:DynamicTabBar.Helpers.Converters"
+    xmlns:av="clr-namespace:DynamicTabBar.Views.AuxiliaryViews"
+    xmlns:rv="clr-namespace:DynamicTabBar.Views.ReuseableViews"
+    xmlns:tv="clr-namespace:DynamicTabBar.Views.DynamicTabBarViews"
+    xmlns:vm="clr-namespace:DynamicTabBar.ViewModels"
+    x:DataType="vm:DynamicTabViewModel">
+
+    <ContentPage.BindingContext>
+        <vm:DynamicTabViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <c:IntToBoolConverter x:Key="IntToBool"/>
+    </ContentPage.Resources>
+
+    <Grid
+        RowDefinitions="60,*,60"
+        ColumnDefinitions="*">
+
+        <!--Header-->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            RowDefinitions="*"
+            ColumnDefinitions="40,*"
+            ColumnSpacing="10"
+            Padding="5,0"
+            BackgroundColor="{StaticResource HeaderBarFillColor}">
+
+            <rv:BackImageView
+                Grid.Row="0"
+                Grid.Column="0"/>
+
+            <Label 
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding BottomTabTitle, StringFormat='{0} Book'}"
+                FontSize="22"
+                VerticalTextAlignment="Center"
+                TextColor="{StaticResource HeaderBarFillTextColor}"/>
+
+            <rv:BusyIndicatorView
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"/>
+        </Grid>
+
+        <!--Body-->
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="0">
+
+            <!--Bottom Tab View-->
+            <VerticalStackLayout
+                CompressedLayout.IsHeadless="True">
+
+                <!--Tab 0 View-->
+                <av:FantasyBookView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="{Binding BottomTabList[0].TabIsSelected}"/>
+
+                <!--Tab 1 View-->
+                <av:MysteryBookView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="{Binding BottomTabList[1].TabIsSelected}"/>
+
+                <!--Tab 2 View-->
+                <av:ScienceFictionBookView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="{Binding BottomTabList[2].TabIsSelected}"/>
+
+                <!--Tab 3 View-->
+                <av:AdventureBookView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="{Binding BottomTabList[3].TabIsSelected}"/>
+
+                <!--Tab 4 View-->
+                <av:CookBookView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    IsVisible="{Binding BottomTabList[4].TabIsSelected}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--Bottom Tab Bar-->
+        <tv:BottomTabBarView 
+            Grid.Row="2"
+            Grid.Column="0"
+            IsVisible="{Binding BottomTabList.Count, Converter={StaticResource IntToBool}}"/>
+    </Grid>
+</ContentPage>

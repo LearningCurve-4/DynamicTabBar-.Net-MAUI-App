@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CollectionView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DynamicTabBar.Views.DynamicTabBarViews.TopTabBarView"
+    xmlns:c="clr-namespace:DynamicTabBar.Helpers.Converters"
+    xmlns:m="clr-namespace:DynamicTabBar.Models"
+    xmlns:vm="clr-namespace:DynamicTabBar.ViewModels"
+    x:DataType="vm:BaseViewModel"
+    HeightRequest="60"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    BackgroundColor="{StaticResource PageFillColor}"
+    VerticalScrollBarVisibility="Never"
+    ItemsSource="{Binding TopTabList}"
+    x:Name="toptabbar">
+
+    <CollectionView.Resources>
+        <c:ToggleConverter x:Key="Toggle"/>
+        <c:ToggleMVConverter x:Key="ToggleMV"/>
+    </CollectionView.Resources>
+
+    <CollectionView.ItemsLayout>
+        <LinearItemsLayout 
+            Orientation="Horizontal"/>
+    </CollectionView.ItemsLayout>
+
+    <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="m:DynamicTabModel">
+            <Border
+                HeightRequest="35"
+                Padding="10,0"
+                Margin="5,0"
+                StrokeShape="RoundRectangle 5"
+                BackgroundColor="{Binding TabIsSelected, Converter={StaticResource Toggle}, ConverterParameter=TopTabOnFillColor_TopTabOffFillColor_RK}">
+
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="5">
+
+                    <Image
+                        HeightRequest="30"
+                        WidthRequest="30">
+
+                        <Image.Source>
+                            <MultiBinding Converter="{StaticResource ToggleMV}">
+                                <Binding Path="TabIsSelected"/>
+                                <Binding Path="TabImage"/>
+                                <Binding StringFormat="OO"/>
+                            </MultiBinding>
+                        </Image.Source>
+                    </Image>
+
+                    <Label
+                        Text="{Binding TabTitle, Mode=OneTime}"
+                        TextColor="{Binding TabIsSelected, Converter={StaticResource Toggle}, ConverterParameter=TopTabOnTextColor_TopTabOffTextColor_RK}"
+                        FontSize="12"
+                        HorizontalTextAlignment="Center"/>
+                </HorizontalStackLayout>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=BindingContext.SwitchTabCommand, Mode=OneTime, Source={x:Reference toptabbar}}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <MultiBinding StringFormat="{}{0},{1}">
+                                <Binding Path="TabRef"/>
+                                <Binding Path="TabPos"/>
+                            </MultiBinding>
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Border.GestureRecognizers>
+            </Border>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>

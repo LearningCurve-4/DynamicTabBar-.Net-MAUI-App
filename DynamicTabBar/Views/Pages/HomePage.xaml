@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DynamicTabBar.Views.Pages.HomePage"
+    xmlns:rv="clr-namespace:DynamicTabBar.Views.ReuseableViews"
+    xmlns:vm="clr-namespace:DynamicTabBar.ViewModels"
+    x:DataType="vm:HomeViewModel">
+
+    <Grid
+        RowDefinitions="60,*"
+        ColumnDefinitions="*">
+
+        <!--Header-->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            RowDefinitions="*"
+            ColumnDefinitions="*"
+            ColumnSpacing="10"
+            Padding="10,0"
+            BackgroundColor="{StaticResource HeaderBarFillColor}">
+
+            <Label 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Home"
+                FontSize="22"
+                VerticalTextAlignment="Center"
+                TextColor="{StaticResource HeaderBarFillTextColor}"/>
+
+            <rv:BusyIndicatorView
+                Grid.Row="0"
+                Grid.Column="0"/>
+        </Grid>
+
+        <!--Body-->
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="0">
+
+            <Grid
+                RowDefinitions="*"
+                ColumnDefinitions="*"
+                Padding="10,0">
+
+                <Button
+                    Text="Click to display&#x0a;Dynamic Tabs"
+                    LineBreakMode="WordWrap"
+                    HeightRequest="100"
+                    WidthRequest="200"
+                    Command="{Binding GoToPageCommand, Mode=OneTime}"
+                    CommandParameter="DynamicTabPage"/>
+            </Grid>
+        </ScrollView>
+
+        <!--Footer-->
+    </Grid>
+</ContentPage>

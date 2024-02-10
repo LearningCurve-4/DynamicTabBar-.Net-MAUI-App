@@ -1,0 +1,114 @@
+﻿[
+	{
+		"TabRef": 0,
+		"TabPos": 1,
+		"TabTitle": "Fantasy",
+		"TabImage": "fantasy.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 0,
+		"TabPos": 2,
+		"TabTitle": "Mystery",
+		"TabImage": "mystery.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 0,
+		"TabPos": 3,
+		"TabTitle": "Science Fic",
+		"TabImage": "science.png",
+		"TabIsSelected": true
+	},
+	{
+		"TabRef": 0,
+		"TabPos": 4,
+		"TabTitle": "Adventure",
+		"TabImage": "adventure.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 0,
+		"TabPos": 5,
+		"TabTitle": "Cookbook",
+		"TabImage": "cookbook.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 1,
+		"TabPos": 1,
+		"TabTitle": "Fairy Tales",
+		"TabImage": "fairytales.png",
+		"TabIsSelected": true
+	},
+	{
+		"TabRef": 1,
+		"TabPos": 2,
+		"TabTitle": "Magical Realism",
+		"TabImage": "magicalrealism.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 1,
+		"TabPos": 3,
+		"TabTitle": "Comic",
+		"TabImage": "comic.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 1,
+		"TabPos": 4,
+		"TabTitle": "Historical",
+		"TabImage": "historical.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 3,
+		"TabPos": 1,
+		"TabTitle": "Space Opera",
+		"TabImage": "spaceopera.png",
+		"TabIsSelected": true
+	},
+	{
+		"TabRef": 3,
+		"TabPos": 2,
+		"TabTitle": "Cyberpunk",
+		"TabImage": "cyberpunk.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 5,
+		"TabPos": 1,
+		"TabTitle": "Main Dishes",
+		"TabImage": "maindishes.png",
+		"TabIsSelected": true
+	},
+	{
+		"TabRef": 5,
+		"TabPos": 2,
+		"TabTitle": "Side dishes",
+		"TabImage": "sidedishes.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 5,
+		"TabPos": 3,
+		"TabTitle": "Beverages",
+		"TabImage": "beverages.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 5,
+		"TabPos": 4,
+		"TabTitle": "Desserts",
+		"TabImage": "desserts.png",
+		"TabIsSelected": false
+	},
+	{
+		"TabRef": 5,
+		"TabPos": 5,
+		"TabTitle": "Appetizers",
+		"TabImage": "appetizers.png",
+		"TabIsSelected": false
+	}
+]
